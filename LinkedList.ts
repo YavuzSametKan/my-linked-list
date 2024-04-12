@@ -1,5 +1,5 @@
 import Nodee from './Node'
-import Nodes from "./Nodes"
+import Nodes from './Nodes'
 import IfLinkedList from './IfLinkedList'
 export default class LinkedList implements IfLinkedList{
     private head: Nodee
@@ -24,7 +24,7 @@ export default class LinkedList implements IfLinkedList{
      * @param datas Data to be prepended to the linked list.
      */
     prepend(...datas: any): void{
-        let nodes: Nodee[] = new Nodes(...datas).toNode()
+        let nodes: Nodee[] = new Nodes(...datas).toNodeArray()
 
         if(nodes.length === 0) return
 
@@ -40,7 +40,7 @@ export default class LinkedList implements IfLinkedList{
      * @param datas Data to be added to the end of the linked list.
      */
     push(...datas: any): void{
-        let nodes: Nodee[] = new Nodes(...datas).toNode()
+        let nodes: Nodee[] = new Nodes(...datas).toNodeArray()
 
         if (nodes.length === 0) return
 
@@ -69,7 +69,7 @@ export default class LinkedList implements IfLinkedList{
      * @param datas Data to be added to the linked list.
      */
     addToSorted(...datas: any): void{
-        let nodes: Nodee[] = new Nodes(...datas).toNode()
+        let nodes: Nodee[] = new Nodes(...datas).toNodeArray()
 
         if (nodes.length === 0) return
 

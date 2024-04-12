@@ -8,7 +8,7 @@ export default class Nodes{
             this.nodes[i] = new Nodee(datas[i])
     }
 
-    toNode(): Nodee[]{
+    toNodeArray(): Nodee[]{
         return this.nodes
     }
 }
