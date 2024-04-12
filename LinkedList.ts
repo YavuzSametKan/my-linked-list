@@ -154,6 +154,14 @@ export default class LinkedList implements IfLinkedList{
     }
 
     /**
+     * Checks if the linked list is empty.
+     * @returns True if the linked list is empty, otherwise false.
+     */
+    isEmpty(): boolean{
+        return this.size() === 0
+    }
+
+    /**
      * Sets the data of the node at the specified index with the provided data.
      * @param index Index of the node to set the data for.
      * @param data Data to set for the node.
@@ -161,7 +169,7 @@ export default class LinkedList implements IfLinkedList{
     set(index: number, data: any): void {
         const node: Nodee = new Nodee(data)
 
-        if(index > this.size()-1 || index < 0 || this.size() === 0) return
+        if(index > this.size()-1 || index < 0 || this.isEmpty()) return
 
         if(!node) return
 
@@ -192,7 +200,7 @@ export default class LinkedList implements IfLinkedList{
      * @param piece Number of nodes to remove from the end of the linked list.
      */
     pop(piece: number = 1): void {
-        if (this.size() === 0) return
+        if (this.isEmpty()) return
 
         if (piece >= this.size()) {
             this.clear()
@@ -214,7 +222,7 @@ export default class LinkedList implements IfLinkedList{
      * @param piece Number of nodes to remove from the beginning of the linked list.
      */
     poll(piece: number = 1): void{
-        if(this.size() === 0) return
+        if(this.isEmpty()) return
 
         if (piece >= this.size()) {
             this.clear()
@@ -286,7 +294,7 @@ export default class LinkedList implements IfLinkedList{
      * Output: x -> y -> z -> ... -> n
      */
     print(): void{
-        if(this.size() === 0) return
+        if(this.isEmpty()) return
 
         let cursor: Nodee = this.head
         let result: string =  cursor.data

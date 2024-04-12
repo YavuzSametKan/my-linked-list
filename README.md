@@ -43,6 +43,10 @@ Checks if the linked list contains a node with the specified data.
 
 Counts the occurrences of nodes with the specified data in the linked list.
 
+#### `isEmpty(): boolean`
+
+Checks if the linked list is empty.
+
 #### `set(index: number, data: any): void`
 
 Sets the data of the node at the specified index to the provided data.
@@ -92,9 +96,12 @@ import LinkedList from './LinkedList'
     // Creating a new LinkedList
     const linkedList = new LinkedList()
 
+    // Checking if the list is empty
+    console.log("Is List Empty?", linkedList.isEmpty()) // Output: true
+
     // Adding elements to the list
     linkedList.push(7, 2, 7, 1, 5)
-    console.log("Initial List:")
+    console.log("\nInitial List:")
     linkedList.print() // Output: 7 -> 2 -> 7 -> 1 -> 5
 
     // Prepending elements to the list
@@ -123,10 +130,13 @@ import LinkedList from './LinkedList'
     console.log("Last element of the list:", linkedList.getLast()) // Output: 5
 
     // Getting the element at a specific index
-    console.log("Element at index 3:", linkedList.get(3), '\n') // Output: 10
+    console.log("Element at index 3:", linkedList.get(3)) // Output: 10
+
+    // Checking if the list is empty
+    console.log("Is List Empty?", linkedList.isEmpty()) // Output: false
 
     // Sorting to list
-    console.log("Elements are sorting:")
+    console.log("\nElements are sorting:")
     linkedList.sort()
     linkedList.print() // Output: 1 -> 2 -> 3 -> 5 -> 6 -> 7 -> 7 -> 9 -> 10 -> 20
 

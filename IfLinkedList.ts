@@ -8,6 +8,8 @@ export default interface IfLinkedList{
     contains(data: any): boolean
     countOf(data: any): number
 
+    isEmpty(): boolean
+
     set(index: number, data: any): void
 
     clear(): void
