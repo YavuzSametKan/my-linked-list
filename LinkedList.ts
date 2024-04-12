@@ -1,5 +1,5 @@
 import Nodee from './Node'
-import Nodes from "./Nodes";
+import Nodes from "./Nodes"
 import IfLinkedList from './IfLinkedList'
 export default class LinkedList implements IfLinkedList{
     private head: Nodee
@@ -96,25 +96,25 @@ export default class LinkedList implements IfLinkedList{
      */
     sort(): void {
         // If the list is empty or has only one element, no need to sort
-        if (!this.head || !this.head.next) return;
+        if (!this.head || !this.head.next) return
 
-        let sorted: boolean = false;
+        let sorted: boolean = false
 
         while (!sorted) {
-            sorted = true;
-            let cursor: Nodee = this.head;
+            sorted = true
+            let cursor: Nodee = this.head
 
             while (cursor.next) {
                 if (cursor.data > cursor.next.data) {
-                    sorted = false;
+                    sorted = false
 
                     // Swap the data of the current and next nodes
-                    let temp = cursor.data;
-                    cursor.data = cursor.next.data;
-                    cursor.next.data = temp;
+                    let temp = cursor.data
+                    cursor.data = cursor.next.data
+                    cursor.next.data = temp
                 }
 
-                cursor = cursor.next;
+                cursor = cursor.next
             }
         }
     }
@@ -241,11 +241,11 @@ export default class LinkedList implements IfLinkedList{
      * @returns Data of the node at the specified index, or null if the index is out of bounds.
      */
     get(index: number): any{
-        if (index >= this.size() || index < 0) return null;
+        if (index >= this.size() || index < 0) return null
 
-        let cursor: Nodee = this.head;
+        let cursor: Nodee = this.head
         for (let i: number = 0; i < index; i++) {
-            cursor = cursor.next;
+            cursor = cursor.next
         }
 
         return cursor != null ? cursor.data : null
