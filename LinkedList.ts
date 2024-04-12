@@ -5,6 +5,11 @@ export default class LinkedList implements IfLinkedList{
     private head: Nodee
     private length: number
 
+    /**
+     * Initializes a new instance of the LinkedList class.
+     * If initial data is provided, it adds the data to the linked list.
+     * @param datas Initial data to be added to the linked list.
+     */
     constructor(...datas: any) {
         if(datas.length > 0){
             this.push(...datas)
@@ -14,6 +19,10 @@ export default class LinkedList implements IfLinkedList{
         }
     }
 
+    /**
+     * Adds new nodes with the provided data to the beginning of the linked list.
+     * @param datas Data to be prepended to the linked list.
+     */
     prepend(...datas: any): void{
         let nodes: Nodee[] = new Nodes(...datas).toNode()
 
@@ -26,6 +35,10 @@ export default class LinkedList implements IfLinkedList{
         }
     }
 
+    /**
+     * Adds new nodes with the provided data to the end of the linked list.
+     * @param datas Data to be added to the end of the linked list.
+     */
     push(...datas: any): void{
         let nodes: Nodee[] = new Nodes(...datas).toNode()
 
@@ -51,6 +64,10 @@ export default class LinkedList implements IfLinkedList{
         }
     }
 
+    /**
+     * Adds new nodes with the provided data to the linked list while maintaining a sorted order.
+     * @param datas Data to be added to the linked list.
+     */
     addToSorted(...datas: any): void{
         let nodes: Nodee[] = new Nodes(...datas).toNode()
 
@@ -74,6 +91,9 @@ export default class LinkedList implements IfLinkedList{
         }
     }
 
+    /**
+     * Sorts the linked list in ascending order.
+     */
     sort(): void {
         // If the list is empty or has only one element, no need to sort
         if (!this.head || !this.head.next) return;
@@ -99,6 +119,11 @@ export default class LinkedList implements IfLinkedList{
         }
     }
 
+    /**
+     * Checks if the linked list contains a node with the specified data.
+     * @param data Data to search for in the linked list.
+     * @returns True if the data is found, otherwise false.
+     */
     contains(data: any): boolean{
         let cursor: Nodee = this.head
         while(cursor != null){
@@ -110,6 +135,11 @@ export default class LinkedList implements IfLinkedList{
         return false
     }
 
+    /**
+     * Counts the occurrences of nodes with the specified data in the linked list.
+     * @param data Data to count occurrences of in the linked list.
+     * @returns Number of occurrences of the specified data.
+     */
     countOf(data: any): number{
         let counter: number = 0
         let cursor: Nodee = this.head
@@ -123,6 +153,11 @@ export default class LinkedList implements IfLinkedList{
         return counter
     }
 
+    /**
+     * Sets the data of the node at the specified index with the provided data.
+     * @param index Index of the node to set the data for.
+     * @param data Data to set for the node.
+     */
     set(index: number, data: any): void {
         const node: Nodee = new Nodee(data)
 
@@ -144,11 +179,18 @@ export default class LinkedList implements IfLinkedList{
         }
     }
 
+    /**
+     * Clears the linked list by setting the head to null and resetting the length to 0.
+     */
     clear(): void{
         this.head = null
         this.length = 0
     }
 
+    /**
+     * Removes the specified number of nodes from the end of the linked list.
+     * @param piece Number of nodes to remove from the end of the linked list.
+     */
     pop(piece: number = 1): void {
         if (this.size() === 0) return
 
@@ -167,6 +209,10 @@ export default class LinkedList implements IfLinkedList{
         this.length -= piece
     }
 
+    /**
+     * Removes the specified number of nodes from the beginning of the linked list.
+     * @param piece Number of nodes to remove from the beginning of the linked list.
+     */
     poll(piece: number = 1): void{
         if(this.size() === 0) return
 
@@ -181,6 +227,11 @@ export default class LinkedList implements IfLinkedList{
         this.length -= piece
     }
 
+    /**
+     * Retrieves the data of the node at the specified index in the linked list.
+     * @param index Index of the node to retrieve data from.
+     * @returns Data of the node at the specified index, or null if the index is out of bounds.
+     */
     get(index: number): any{
         if (index >= this.size() || index < 0) return null;
 
@@ -192,18 +243,34 @@ export default class LinkedList implements IfLinkedList{
         return cursor != null ? cursor.data : null
     }
 
+    /**
+     * Retrieves the data of the first node in the linked list.
+     * @returns Data of the first node, or null if the linked list is empty.
+     */
     getFirst(): any{
         return this.head !== null ? this.head.data : null
     }
 
+    /**
+     * Retrieves the data of the last node in the linked list.
+     * @returns Data of the last node, or null if the linked list is empty.
+     */
     getLast(): any{
         return this.get(this.size()-1)
     }
 
+    /**
+     * Retrieves the number of nodes in the linked list.
+     * @returns Number of nodes in the linked list.
+     */
     size(): number{
         return this.length
     }
 
+    /**
+     * Converts the linked list to an array.
+     * @returns An array containing the data of all nodes in the linked list.
+     */
     toArray(): any[]{
         let arr: any[] = new Array<any>(this.size())
         let cursor: Nodee = this.head
@@ -214,6 +281,10 @@ export default class LinkedList implements IfLinkedList{
         return arr
     }
 
+    /**
+     * Prints the data of all nodes in the linked list to the console.
+     * Output: x -> y -> z -> ... -> n
+     */
     print(): void{
         if(this.size() === 0) return
 
