@@ -1,124 +1,152 @@
 # My Linked List
 
-This class implements a singly linked list data structure.
+This is a TypeScript implementation of a singly linked list.
 
-## Constructor
+## Usage
 
-### constructor(...datas: any)
+### Creating a Linked List
 
-Creates a new LinkedList. The provided data (datas) is added to the list.
+You can create a new instance of the linked list with or without initial data:
 
-Parameters:
-- `datas`: Data to be added or an array of data.
+```typescript
+const linkedList = new LinkedList(); // Creates an empty linked list
+const linkedListWithData = new LinkedList(1, 2, 3); // Creates a linked list with initial data
+```
 
-## Methods
+### Methods
 
-### prepend(...datas: any): void
+#### `add(...datas: any): void`
 
-Adds data to the beginning of the list.
+Adds new nodes with the provided data to the end of the linked list.
 
-Parameters:
-- `datas`: Data to be added or an array of data.
+#### `prepend(...datas: any): void`
 
-### prependNode(node: Nodee | Nodee[]): void
+Prepends new nodes with the provided data to the beginning of the linked list.
 
-Adds one or multiple nodes to the beginning of the list.
+#### `push(...datas: any): void`
 
-Parameters:
-- `node`: Node or array of nodes to be added.
+Same as `add`, adds new nodes with the provided data to the end of the linked list.
 
-### add(...datas: any): void
+#### `addToSorted(...datas: any): void`
 
-Adds data to the end of the list.
+Adds new nodes with the provided data to the linked list while maintaining a sorted order.
 
-Parameters:
-- `datas`: Data to be added or an array of data.
+#### `sort(): void`
 
-### addNode(node: Nodee | Nodee[]): void
+Sorts the linked list in ascending order.
 
-Adds one or multiple nodes to the end of the list.
+#### `contains(data: any): boolean`
 
-Parameters:
-- `node`: Node or array of nodes to be added.
+Checks if the linked list contains a node with the specified data.
 
-### addToSorted(...datas: any): void
+#### `countOf(data: any): number`
 
-Adds data to the end of the list in sorted order.
+Counts the occurrences of nodes with the specified data in the linked list.
 
-Parameters:
-- `datas`: Data or array of data to be added in sorted order.
+#### `set(index: number, data: any): void`
 
-### contains(data: any): boolean
+Sets the data of the node at the specified index to the provided data.
 
-Checks if a specific data exists in the list.
+#### `clear(): void`
 
-Parameters:
-- `data`: Data to be checked.
+Clears the linked list, removing all nodes.
 
-### countOf(data: any): number
+#### `pop(piece: number = 1): void`
 
-Counts how many times a specific data appears in the list.
+Removes the last `piece` nodes from the linked list.
 
-Parameters:
-- `data`: Data to be counted.
+#### `poll(piece: number = 1): void`
 
-### set(index: number, data: any): void
+Removes the first `piece` nodes from the linked list.
 
-Replaces the data at a specific index with new data.
+#### `get(index: number): any`
 
-Parameters:
-- `index`: Index of the data to be replaced.
-- `data`: New data.
+Returns the data of the node at the specified index.
 
-### setNode(index: number, node: Nodee): void
+#### `getFirst(): any`
 
-Replaces the node at a specific index with a new node.
+Returns the data of the first node in the linked list.
 
-Parameters:
-- `index`: Index of the node to be replaced.
-- `node`: New node.
+#### `getLast(): any`
 
-### clear(): void
+Returns the data of the last node in the linked list.
 
-Clears the list, resets it to its initial state.
+#### `size(): number`
 
-### pop(piece = 1): void
+Returns the number of nodes in the linked list.
 
-Removes a specified number of elements from the end of the list.
+#### `toArray(): any[]`
 
-Parameters:
-- `piece`: Number of elements to remove.
+Converts the linked list to an array.
 
-### poll(piece = 1): void
+#### `print(): void`
 
-Removes a specified number of elements from the beginning of the list.
+Prints the contents of the linked list to the console.
 
-Parameters:
-- `piece`: Number of elements to remove.
+## Examples
 
-### get(index: number): any
+```typescript
+import LinkedList from './LinkedList'
 
-Gets the data at a specific index.
+((): void => {
+    // Creating a new LinkedList
+    const linkedList = new LinkedList()
 
-Parameters:
-- `index`: Index of the data to get.
+    // Adding elements to the list
+    linkedList.push(7, 2, 7, 1, 5)
+    console.log("Initial List:")
+    linkedList.print() // Output: 7 -> 2 -> 7 -> 1 -> 5
 
-### getFirst(): any
+    // Prepending elements to the list
+    linkedList.prepend(10, 20)
+    console.log("\nList after prepending elements:")
+    linkedList.print() // Output: 10 -> 20 -> 7 -> 2 -> 7 -> 1 -> 5
 
-Gets the data at the beginning of the list.
+    // Adding elements to the sorted list
+    linkedList.addToSorted(3, 9, 6)
+    console.log("\nSorted List after prepending elements:")
+    linkedList.print() // Output: 3 -> 6 -> 9 -> 10 -> 20 -> 7 -> 2 -> 7 -> 1 -> 5
 
-### getLast(): any
+    // Checking if the list contains a specific element
+    console.log("\nDoes the list contain 7?", linkedList.contains(7)) // Output: true
 
-Gets the data at the end of the list.
+    // Counting occurrences of a specific element
+    console.log("Number of occurrences of 7:", linkedList.countOf(7)) // Output: 2
 
-### size(): number
+    // Getting the size of the list
+    console.log("Size of the list:", linkedList.size()) // Output: 10
 
-Gets the size of the list (number of elements).
+    // Getting the first element of the list
+    console.log("First element of the list:", linkedList.getFirst()) // Output: 3
 
-### toArray(): any[]
+    // Getting the last element of the list
+    console.log("Last element of the list:", linkedList.getLast()) // Output: 5
 
-Converts the elements of the list to an array.
+    // Getting the element at a specific index
+    console.log("Element at index 3:", linkedList.get(3), '\n') // Output: 10
 
-### print(): void
+    // Sorting to list
+    console.log("Elements are sorting:")
+    linkedList.sort()
+    linkedList.print() // Output: 1 -> 2 -> 3 -> 5 -> 6 -> 7 -> 7 -> 9 -> 10 -> 20
 
-Prints the elements of the list to the console.
+    // Setting a specific element at an index
+    linkedList.set(2, 15)
+    console.log("\nList after setting element at index 2 to 15:")
+    linkedList.print() // Output: 1 -> 2 -> 15 -> 5 -> 6 -> 7 -> 7 -> 9 -> 10 -> 20
+
+    // Removing elements from the end of the list
+    linkedList.pop(3)
+    console.log("\nList after removing 3 elements from the end:")
+    linkedList.print() // Output: 1 -> 2 -> 15 -> 5 -> 6 -> 7 -> 7
+
+    // Removing elements from the beginning of the list
+    linkedList.poll(2)
+    console.log("\nList after removing 2 elements from the beginning:")
+    linkedList.print() // Output: 15 -> 5 -> 6 -> 7 -> 7
+
+    // Converting the list to an array
+    const array: any[] = linkedList.toArray()
+    console.log("\nArray representation of the list:", array) // Output: [ 15, 5, 6, 7, 7 ]
+})()
+```

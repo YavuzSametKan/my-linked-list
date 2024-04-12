@@ -1,6 +1,7 @@
 import Nodee from './Node'
 import Nodes from "./Nodes";
-export default class LinkedList{
+import IfLinkedList from './IfLinkedList'
+export default class LinkedList implements IfLinkedList{
     private head: Nodee
     private length: number
 
@@ -13,7 +14,7 @@ export default class LinkedList{
         }
     }
 
-    prepend(...datas: any){
+    prepend(...datas: any): void{
         let nodes: Nodee[] = new Nodes(...datas).toNode()
 
         if(nodes.length === 0) return
@@ -50,7 +51,7 @@ export default class LinkedList{
         }
     }
 
-    addToSorted(...datas): void{
+    addToSorted(...datas: any): void{
         let nodes: Nodee[] = new Nodes(...datas).toNode()
 
         if (nodes.length === 0) return
@@ -77,12 +78,11 @@ export default class LinkedList{
         // If the list is empty or has only one element, no need to sort
         if (!this.head || !this.head.next) return;
 
-        let sorted = false;
+        let sorted: boolean = false;
 
         while (!sorted) {
             sorted = true;
             let cursor: Nodee = this.head;
-            let prev: Nodee = null;
 
             while (cursor.next) {
                 if (cursor.data > cursor.next.data) {
@@ -94,7 +94,6 @@ export default class LinkedList{
                     cursor.next.data = temp;
                 }
 
-                prev = cursor;
                 cursor = cursor.next;
             }
         }
@@ -205,7 +204,7 @@ export default class LinkedList{
         return this.length
     }
 
-    toArray(){
+    toArray(): any[]{
         let arr: any[] = new Array<any>(this.size())
         let cursor: Nodee = this.head
         for(let i: number = 0; i < arr.length; i++){
@@ -225,7 +224,6 @@ export default class LinkedList{
             result += ' -> ' + cursor.data
             cursor = cursor.next
         }
-        result += '\nlist length: ' + this.length
         console.log(result)
     }
 }
