@@ -1,6 +1,6 @@
 #files
-.js
+*.js
 
 #docs
 .DS_Store
-.idea
+/.idea
