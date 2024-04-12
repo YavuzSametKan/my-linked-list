@@ -6,7 +6,7 @@ export default class LinkedList{
 
     constructor(...datas: any) {
         if(datas.length > 0){
-            this.add(...datas)
+            this.push(...datas)
         } else {
             this.head = null
             this.length = 0
@@ -16,16 +16,6 @@ export default class LinkedList{
     prepend(...datas: any){
         let nodes: Nodee[] = new Nodes(...datas).toNode()
 
-        this.prependNodesToList(nodes)
-    }
-
-    prependNode(node: Nodee | Nodee[]): void{
-        let nodes: Nodee[] = Array.isArray(node) ? node : [node]
-
-        this.prependNodesToList(nodes)
-    }
-
-    private prependNodesToList(nodes: Nodee[]): void{
         if(nodes.length === 0) return
 
         for(let i: number = nodes.length-1; i >= 0; i--){
@@ -35,19 +25,9 @@ export default class LinkedList{
         }
     }
 
-    add(...datas: any): void{
+    push(...datas: any): void{
         let nodes: Nodee[] = new Nodes(...datas).toNode()
 
-        this.addNodesToList(nodes)
-    }
-
-    addNode(node: Nodee | Nodee[]): void{
-        let nodes: Nodee[] = Array.isArray(node) ? node : [node]
-
-        this.addNodesToList(nodes)
-    }
-
-    private addNodesToList(nodes: Nodee[]): void {
         if (nodes.length === 0) return
 
         let cursor: Nodee = this.head
@@ -63,26 +43,16 @@ export default class LinkedList{
                 cursor = cursor.next
         }
 
-        for (let i: number = 0; i < nodes.length; i++) {
+        for (let i: number = 1; i < nodes.length; i++) {
             cursor.next = nodes[i]
             cursor = cursor.next
             this.length++
         }
     }
 
-    addToSortedNode(node: Nodee | Nodee[]): void{
-        let nodes: Nodee[] = Array.isArray(node) ? node : [node]
-
-        this.addToSortedNode(nodes)
-    }
-
     addToSorted(...datas): void{
         let nodes: Nodee[] = new Nodes(...datas).toNode()
 
-        this.addNodesSortedToList(nodes)
-    }
-
-    addNodesSortedToList(nodes: Nodee[]): void {
         if (nodes.length === 0) return
 
         for (let node of nodes) {
@@ -102,6 +72,34 @@ export default class LinkedList{
             }
         }
     }
+
+    sort(): void {
+        // If the list is empty or has only one element, no need to sort
+        if (!this.head || !this.head.next) return;
+
+        let sorted = false;
+
+        while (!sorted) {
+            sorted = true;
+            let cursor: Nodee = this.head;
+            let prev: Nodee = null;
+
+            while (cursor.next) {
+                if (cursor.data > cursor.next.data) {
+                    sorted = false;
+
+                    // Swap the data of the current and next nodes
+                    let temp = cursor.data;
+                    cursor.data = cursor.next.data;
+                    cursor.next.data = temp;
+                }
+
+                prev = cursor;
+                cursor = cursor.next;
+            }
+        }
+    }
+
     contains(data: any): boolean{
         let cursor: Nodee = this.head
         while(cursor != null){
@@ -127,14 +125,8 @@ export default class LinkedList{
     }
 
     set(index: number, data: any): void {
-        this.setNodeToList(index, new Nodee(data))
-    }
+        const node: Nodee = new Nodee(data)
 
-    setNode(index: number, node: Nodee): void {
-        this.setNodeToList(index, node)
-    }
-
-    private setNodeToList(index: number, node: Nodee): void{
         if(index > this.size()-1 || index < 0 || this.size() === 0) return
 
         if(!node) return
@@ -158,7 +150,7 @@ export default class LinkedList{
         this.length = 0
     }
 
-    pop(piece = 1): void {
+    pop(piece: number = 1): void {
         if (this.size() === 0) return
 
         if (piece >= this.size()) {
@@ -176,7 +168,7 @@ export default class LinkedList{
         this.length -= piece
     }
 
-    poll(piece = 1): void{
+    poll(piece: number = 1): void{
         if(this.size() === 0) return
 
         if (piece >= this.size()) {
@@ -233,6 +225,7 @@ export default class LinkedList{
             result += ' -> ' + cursor.data
             cursor = cursor.next
         }
+        result += '\nlist length: ' + this.length
         console.log(result)
     }
 }
