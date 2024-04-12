@@ -9,8 +9,8 @@ This is a TypeScript implementation of a singly linked list.
 You can create a new instance of the linked list with or without initial data:
 
 ```typescript
-const linkedList = new LinkedList(); // Creates an empty linked list
-const linkedListWithData = new LinkedList(1, 2, 3); // Creates a linked list with initial data
+const linkedList = new LinkedList() // Creates an empty linked list
+const linkedListWithData = new LinkedList(1, 2, 3) // Creates a linked list with initial data
 ```
 
 ### Methods
